@@ -12,8 +12,7 @@ internal class Program
 
     var world = new World();
 
-    world.SpawnUnit();
-
+    world.SpawnUnit(5, 10);
     Renderer.Render(world);
 
     List<IReadonlyEntity>? entityCache = null;
