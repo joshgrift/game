@@ -3,14 +3,20 @@ namespace Game.Document
   // Readonly version of an Entity
   public interface IReadonlyEntity
   {
-    abstract T GetComponent<T>() where T : Component;
+    abstract T? GetComponent<T>() where T : Component;
+
+    abstract Guid guid
+    {
+      get;
+    }
+
   }
 
   // Atomic Unit of the Document
 
   public class Entity : IReadonlyEntity
   {
-    private Dictionary<Type, Component> components = new();
+    private readonly Dictionary<Type, Component> components = new();
 
     private Guid _guid;
 
@@ -31,9 +37,9 @@ namespace Game.Document
       return this;
     }
 
-    public T GetComponent<T>() where T : Component
+    public T? GetComponent<T>() where T : Component
     {
-      components.TryGetValue(typeof(T), out Component value);
+      components.TryGetValue(typeof(T), out Component? value);
 
       return value as T;
     }

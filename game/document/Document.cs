@@ -2,8 +2,8 @@ namespace Game.Document
 {
   public class Document
   {
-    private List<Entity> entities = new();
-    private Dictionary<Type, List<Entity>> components = new();
+    private readonly List<Entity> entities = new();
+    private readonly Dictionary<Type, List<Entity>> components = new();
 
     public Entity CreateEntity(Component[] newComponents)
     {
@@ -19,12 +19,27 @@ namespace Game.Document
         entity.AddComponent(newComponent);
       }
 
+      entities.Add(entity);
       return entity;
     }
 
     public List<Entity> GetEntities(Type type)
     {
       return components[type];
+    }
+
+    public Entity? GetByGuid(Guid guid)
+    {
+      // SLOW AS HELL
+      foreach (var entity in entities)
+      {
+        if (entity.guid.Equals(guid))
+        {
+          return entity;
+        }
+      }
+
+      return null;
     }
 
   }

@@ -4,7 +4,7 @@ namespace Game.World
 {
   public class World
   {
-    private Document.Document document = new();
+    private readonly Document.Document document = new();
 
     public IReadonlyEntity SpawnUnit()
     {
@@ -15,9 +15,21 @@ namespace Game.World
       return entity;
     }
 
-    public void MoveUnit()
+    // Move a unit
+    public void MoveUnit(Guid guid, int q, int r)
     {
+      var entity = document.GetByGuid(guid);
+      if (entity == null)
+        return;
 
+      var component = entity.GetComponent<Position>();
+      if (component == null)
+        return;
+
+      // Do we want to make this into a transaction system?
+      component.Q = q;
+      component.R = r;
+      Console.WriteLine($"Moved to {q}, {r}");
     }
 
     public IEnumerable<IReadonlyEntity> GetAllMapEntities()

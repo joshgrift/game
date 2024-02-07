@@ -13,15 +13,15 @@ namespace Game.Renderer
 
       foreach (var e in entities)
       {
-        if (MaxQ < e.GetComponent<Position>().Q)
+        if (MaxQ < e!.GetComponent<Position>()!.Q)
         {
-          MaxQ = e.GetComponent<Position>().Q;
+          MaxQ = e!.GetComponent<Position>()!.Q;
         }
 
 
-        if (MaxR < e.GetComponent<Position>().R)
+        if (MaxR < e!.GetComponent<Position>()!.R)
         {
-          MaxR = e.GetComponent<Position>().R;
+          MaxR = e!.GetComponent<Position>()!.R;
         }
       }
 
@@ -30,7 +30,7 @@ namespace Game.Renderer
       foreach (var e in entities)
       {
         var position = e.GetComponent<Position>();
-        map[position.Q, position.R] = 1;
+        map[position!.Q, position!.R] = 1;
       }
 
       for (int k = 0; k < map.GetLength(0); k++)
