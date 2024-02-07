@@ -1,4 +1,5 @@
 using Game.Datastore;
+using Game.Util;
 
 namespace Game.World
 {
@@ -6,13 +7,11 @@ namespace Game.World
   public class Position : Component
   {
 
-    public int Q;
-    public int R;
+    public HexCoords Coords;
 
     public static Position Default() => new()
     {
-      Q = 5,
-      R = 2,
+      Coords = new HexCoords(0, 0)
     };
   }
 }

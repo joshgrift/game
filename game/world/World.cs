@@ -10,7 +10,7 @@ namespace Game.World
     public IReadonlyEntity SpawnUnit(int q, int r)
     {
       var entity = document.CreateEntity(new Component[] {
-        new Position(){ Q = q, R = r},
+        new Position(){ Coords = new(q, r)},
         Movable.Default(),
         Sight.Default(),
       });

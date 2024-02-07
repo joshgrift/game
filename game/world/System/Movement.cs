@@ -30,8 +30,8 @@ namespace Game.World
       }
 
       // Do we want to make this into a transaction system?
-      position.Q = q;
-      position.R = r;
+      position.Coords.Q = q;
+      position.Coords.R = r;
       movable.Movement--;
       return true;
     }

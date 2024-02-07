@@ -60,7 +60,7 @@ internal class Program
           var i = 0;
           foreach (var entity in entityCache)
           {
-            Console.WriteLine($" {i}) {entity.guid} ({entity.GetComponent<Position>()!.Q},{entity.GetComponent<Position>()!.R})");
+            Console.WriteLine($" {i}) {entity.guid} {entity.GetComponent<Position>()!.Coords}");
             i++;
           }
           break;
