@@ -9,10 +9,15 @@ namespace Game.World
     public IReadonlyEntity SpawnUnit()
     {
       var entity = document.CreateEntity(new[] {
-        new Position(){ X = 15, Y = 10}
+        new Position(){ Q = 15, R = 10}
       });
 
       return entity;
+    }
+
+    public void MoveUnit()
+    {
+
     }
 
     public IEnumerable<IReadonlyEntity> GetAllMapEntities()

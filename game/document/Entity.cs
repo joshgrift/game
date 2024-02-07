@@ -12,6 +12,18 @@ namespace Game.Document
   {
     private Dictionary<Type, Component> components = new();
 
+    private Guid _guid;
+
+    public Guid guid
+    {
+      get => _guid;
+    }
+
+    public Entity()
+    {
+      _guid = Guid.NewGuid();
+    }
+
     public Entity AddComponent(Component component)
     {
       components.Add(component.GetType(), component);

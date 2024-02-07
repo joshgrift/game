@@ -3,7 +3,7 @@ using Game.Document;
 namespace Game.World
 {
   // TODO: How to make this only readable in the World directory
-  public class Position : Component
+  public class Movable : Component
   {
 
     public int Q;

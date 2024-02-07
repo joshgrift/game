@@ -8,29 +8,29 @@ namespace Game.Renderer
     {
       var entities = world.GetAllMapEntities();
 
-      int MaxX = 0;
-      int MaxY = 0;
+      int MaxQ = 0;
+      int MaxR = 0;
 
       foreach (var e in entities)
       {
-        if (MaxX < e.GetComponent<Position>().X)
+        if (MaxQ < e.GetComponent<Position>().Q)
         {
-          MaxX = e.GetComponent<Position>().X;
+          MaxQ = e.GetComponent<Position>().Q;
         }
 
 
-        if (MaxY < e.GetComponent<Position>().Y)
+        if (MaxR < e.GetComponent<Position>().R)
         {
-          MaxY = e.GetComponent<Position>().Y;
+          MaxR = e.GetComponent<Position>().R;
         }
       }
 
-      int[,] map = new int[MaxX + 1, MaxY + 1];
+      int[,] map = new int[MaxQ + 1, MaxR + 1];
 
       foreach (var e in entities)
       {
         var position = e.GetComponent<Position>();
-        map[position.X, position.Y] = 1;
+        map[position.Q, position.R] = 1;
       }
 
       for (int k = 0; k < map.GetLength(0); k++)
