@@ -29,6 +29,8 @@ namespace Game.World
         return false;
       }
 
+      // TODO: Check if the distance is too far away
+
       // Do we want to make this into a transaction system?
       position.Coords.Q = q;
       position.Coords.R = r;

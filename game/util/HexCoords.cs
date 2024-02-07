@@ -24,5 +24,13 @@ namespace Game.Util
       var vec = Subtract(b);
       return (Math.Abs(vec.Q) + Math.Abs(vec.Q + vec.R) + Math.Abs(vec.R)) / 2;
     }
+
+    public readonly double[] ToCartesian(int size)
+    {
+      return new double[]{
+        Q * size * 3 / 2,
+        size * (Math.Sqrt(3) / 2 * Q + Math.Sqrt(3) * R)
+      };
+    }
   }
 }

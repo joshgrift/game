@@ -3,19 +3,35 @@ using Game.Renderer;
 using Game.World;
 using Game.Util;
 using System.Linq;
+using System.Windows;
 
 internal class Program
 {
+
+  private static void openWindow(World world)
+  {
+    Thread thread = new Thread(() =>
+      {
+        // Your window creation logic here
+        var gameWindow = new GameWindow(world);
+        System.Windows.Threading.Dispatcher.Run();
+      });
+    thread.SetApartmentState(ApartmentState.STA); // Set the thread to STA
+    thread.Start();
+  }
+
   private static void Main(string[] args)
   {
     Console.WriteLine("Welcome to Game");
 
     var world = new World();
 
-    world.SpawnUnit(5, 10);
-    Renderer.Render(world);
+    world.SpawnUnit(1, -1);
+    //Renderer.Render(world);
 
     List<IReadonlyEntity>? entityCache = null;
+
+    openWindow(world);
 
     while (true)
     {
