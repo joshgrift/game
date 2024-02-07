@@ -1,15 +1,17 @@
-using Game.Document;
+using Game.Datastore;
 
 namespace Game.World
 {
   public class World
   {
-    private readonly Document.Document document = new();
+    private readonly Document document = new();
 
     public IReadonlyEntity SpawnUnit()
     {
-      var entity = document.CreateEntity(new[] {
-        new Position(){ Q = 15, R = 10}
+      var entity = document.CreateEntity(new Component[] {
+        new Position(){ Q = 15, R = 10},
+        new Movable(),
+        new Sight()
       });
 
       return entity;
@@ -19,17 +21,12 @@ namespace Game.World
     public void MoveUnit(Guid guid, int q, int r)
     {
       var entity = document.GetByGuid(guid);
+
       if (entity == null)
         return;
 
-      var component = entity.GetComponent<Position>();
-      if (component == null)
-        return;
-
-      // Do we want to make this into a transaction system?
-      component.Q = q;
-      component.R = r;
-      Console.WriteLine($"Moved to {q}, {r}");
+      if (Movement.Move(document, entity, q, r))
+        Console.WriteLine($"Moved to {q}, {r}");
     }
 
     public IEnumerable<IReadonlyEntity> GetAllMapEntities()

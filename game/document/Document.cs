@@ -1,4 +1,4 @@
-namespace Game.Document
+namespace Game.Datastore
 {
   public class Document
   {

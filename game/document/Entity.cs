@@ -1,4 +1,4 @@
-namespace Game.Document
+namespace Game.Datastore
 {
   // Readonly version of an Entity
   public interface IReadonlyEntity

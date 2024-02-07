@@ -1,4 +1,4 @@
-using Game.Document;
+using Game.Datastore;
 
 namespace Game.World
 {

@@ -7,3 +7,10 @@
 - Entity Component System
   - An example: https://austinmorlan.com/posts/entity_component_system/
   - Wikipedia: https://en.wikipedia.org/wiki/Entity_component_system
+
+## Commands
+
+- list
+  - See all entities you are allowed to see
+- move
+  - Move an entity
