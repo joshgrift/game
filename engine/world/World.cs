@@ -2,7 +2,7 @@ using Game.Datastore;
 
 namespace Game.World
 {
-  internal class World
+  public class World
   {
     private readonly Document Document = new();
 
