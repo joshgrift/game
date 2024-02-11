@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Game.World;
 
 namespace gameApi.Controllers;
 
@@ -10,8 +9,7 @@ public class WorldController : ControllerBase
   [HttpGet(Name = "World")]
   public string Get()
   {
-    var world = new World(new string[] { "blue", "red" });
-
+    var world = WorldAdapter.GetWorld();
     return world.GetCurrentPlayerString();
   }
 }
