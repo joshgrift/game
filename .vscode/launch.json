@@ -1,7 +1,45 @@
 {
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
-  "configurations": []
+  "configurations": [
+    {
+      "name": ".NET API",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "buildApi",
+      "program": "${workspaceFolder}/api/bin/Debug/net7.0/api.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/api",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    {
+      "name": ".NET Engine",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "buildEngine",
+      "program": "${workspaceFolder}/engine/bin/Debug/net7.0-windows/engine.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/engine",
+      "stopAtEntry": false,
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Everything",
+      "configurations": [
+        ".NET Engine",
+        ".NET API"
+      ],
+      "stopAll": true
+    }
+  ]
 }
