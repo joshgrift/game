@@ -2,45 +2,70 @@ using Game.Datastore;
 
 namespace Game.World
 {
-  public class Movement : ISystem
+  public class MovementSystem : System
   {
-    public static bool Move(Document document, Entity entity, int q, int r, out string? result)
+    public MovementSystem(Document document, WorldDispatcher dispatcher) : base(document, dispatcher)
     {
-      result = "";
+      Dispatcher.MoveEvent += MoveHandler;
+      Dispatcher.TurnEvent += TurnHandler;
+    }
 
-      var position = entity.GetComponent<Position>();
-      if (position == null)
+    public override void Close()
+    {
+      Dispatcher.MoveEvent -= MoveHandler;
+      Dispatcher.TurnEvent -= TurnHandler;
+    }
+
+    private void MoveHandler(object? sender, MoveEventArgs e)
+    {
+      var entity = Document.GetByGuid(e.EntityGuid);
+
+      if (entity == null)
       {
-        result = "This entity does not have a position";
-        return false;
+        e.Result = new SystemResult(false, "This entity does not exist");
+        return;
       }
 
+      if (e.Instigator != entity.Owner)
+      {
+        e.Result = new SystemResult(false, "The player doesn't own this entity");
+        return;
+      }
+
+      var position = entity.GetComponent<Position>();
+
+      if (position == null)
+      {
+        e.Result = new SystemResult(false, "This entity does not have a position");
+        return;
+      }
 
       var movable = entity.GetComponent<Movable>();
       if (movable == null)
       {
-        result = "This entity cannot be moved";
-        return false;
+        e.Result = new SystemResult(false, "This entity cannot be moved");
+        return;
       }
 
       if (movable.Movement < 1)
       {
-        result = "This entity ran out of movement points";
-        return false;
+        e.Result = new SystemResult(false, "This entity ran out of movement points");
+        return;
       }
 
       // TODO: Check if the distance is too far away
 
       // Do we want to make this into a transaction system?
-      position.Coords.Q = q;
-      position.Coords.R = r;
+      position.Coords.Q = e.Q;
+      position.Coords.R = e.R;
       movable.Movement--;
-      return true;
+
+      e.Result = new SystemResult(true, "Moved to new point");
     }
 
-    public static bool FinishTurn(Document document)
+    public void TurnHandler(object? sender, TurnEventArgs e)
     {
-      var entities = document.GetEntities(typeof(Movable));
+      var entities = Document.GetEntities(typeof(Movable));
 
       foreach (var entity in entities)
       {
@@ -48,7 +73,7 @@ namespace Game.World
         movable!.Movement = movable.MaxMovement;
       }
 
-      return true;
+      e.Result = new SystemResult(true, "Turn Complete");
     }
   }
 }

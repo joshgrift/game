@@ -5,9 +5,9 @@ namespace Game.Datastore
     private readonly List<Entity> entities = new();
     private readonly Dictionary<Type, List<Entity>> components = new();
 
-    public Entity CreateEntity(Component[] newComponents)
+    public Entity CreateEntity(Component[] newComponents, Guid? owner = null)
     {
-      var entity = new Entity();
+      var entity = new Entity(owner);
 
       foreach (var newComponent in newComponents)
       {
@@ -25,7 +25,7 @@ namespace Game.Datastore
 
     public List<Entity> GetEntities(Type type)
     {
-      return components[type];
+      return components[type] ?? new List<Entity>();
     }
 
     public Entity? GetByGuid(Guid guid)
@@ -33,7 +33,7 @@ namespace Game.Datastore
       // SLOW AS HELL
       foreach (var entity in entities)
       {
-        if (entity.guid.Equals(guid))
+        if (entity.Guid.Equals(guid))
         {
           return entity;
         }

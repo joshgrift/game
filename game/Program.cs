@@ -1,9 +1,6 @@
 ﻿using Game.Datastore;
 using Game.Renderer;
 using Game.World;
-using Game.Util;
-using System.Linq;
-using System.Windows;
 
 internal class Program
 {
@@ -24,7 +21,7 @@ internal class Program
   {
     Console.WriteLine("Welcome to Game");
 
-    var world = new World();
+    var world = new World(new string[] { "blue", "red" });
 
     world.SpawnUnit(1, -1);
     //Renderer.Render(world);
@@ -35,7 +32,7 @@ internal class Program
 
     while (true)
     {
-      Console.Write(">");
+      Console.Write($"({world.GetCurrentPlayerString()}) >");
       var raw = Console.ReadLine() ?? "exit";
       var arguments = raw.Split(" ");
 
@@ -62,11 +59,10 @@ internal class Program
               break;
             }
 
-            guid = entityCache[int.Parse(arguments[1])].guid;
+            guid = entityCache[int.Parse(arguments[1])].Guid;
           }
 
           world.MoveUnit(guid, int.Parse(arguments[2]), int.Parse(arguments[3]));
-          Console.WriteLine("Moved");
 
           break;
 
@@ -76,13 +72,31 @@ internal class Program
           var i = 0;
           foreach (var entity in entityCache)
           {
-            Console.WriteLine($" {i}) {entity.guid} {entity.GetComponent<Position>()!.Coords}");
+            var entityString = $" {i}) {entity.Guid}";
+
+            if (entity.Owner != null)
+            {
+              var name = world.GetPlayerName((Guid)entity.Owner);
+              entityString += $" ({name})";
+            }
+
+            entityString += $" {entity.GetComponent<Position>()!.Coords}";
+
+            var movableComponent = entity.GetComponent<Movable>();
+            if (movableComponent != null)
+              entityString += $" M: {movableComponent.Movement}";
+
+            Console.WriteLine(entityString);
             i++;
           }
           break;
 
         case "render":
           Renderer.Render(world);
+          break;
+
+        case "turn":
+          world.EndTurn();
           break;
 
         case "exit":

@@ -3,9 +3,18 @@ using Game.Datastore;
 namespace Game.World
 {
   // TODO: How to make this only readable in the World directory
-  public interface ISystem
+  public abstract class System
   {
-    abstract static bool FinishTurn(Document document);
+    protected Document Document;
+    protected WorldDispatcher Dispatcher;
+
+    public System(Document document, WorldDispatcher dispatcher)
+    {
+      Document = document;
+      Dispatcher = dispatcher;
+    }
+
+    public abstract void Close();
   }
 
   public class SystemResult

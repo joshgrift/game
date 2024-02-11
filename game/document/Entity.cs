@@ -5,11 +5,15 @@ namespace Game.Datastore
   {
     abstract T? GetComponent<T>() where T : Component;
 
-    abstract Guid guid
+    abstract Guid Guid
     {
       get;
     }
 
+    abstract Guid? Owner
+    {
+      get;
+    }
   }
 
   // Atomic Unit of the Document
@@ -18,16 +22,19 @@ namespace Game.Datastore
   {
     private readonly Dictionary<Type, Component> components = new();
 
-    private Guid _guid;
+    private readonly Guid guid;
 
-    public Guid guid
+    public Guid Guid
     {
-      get => _guid;
+      get => guid;
     }
 
-    public Entity()
+    public Guid? Owner { get; set; } = null;
+
+    public Entity(Guid? owner = null)
     {
-      _guid = Guid.NewGuid();
+      guid = Guid.NewGuid();
+      Owner = owner;
     }
 
     public Entity AddComponent(Component component)
