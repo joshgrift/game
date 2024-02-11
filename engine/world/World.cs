@@ -12,7 +12,7 @@ namespace Game.World
     private WorldDispatcher Dispatcher = new();
 
     // create new
-    internal World(string[] playerNames)
+    public World(string[] playerNames)
     {
       if (playerNames.Length < 1)
         throw new ArgumentException("Missing players");
@@ -76,7 +76,7 @@ namespace Game.World
       return Document.GetByGuid(worldComponent.CurrentTurn) ?? throw new Exception("Missing player entity"); ;
     }
 
-    internal string GetCurrentPlayerString()
+    public string GetCurrentPlayerString()
     {
       return GetCurrentPlayerEntity().GetComponent<Player>()!.Name;
     }
@@ -95,7 +95,7 @@ namespace Game.World
       return Document.GetEntities(typeof(Position));
     }
 
-    internal string GetPlayerName(Guid guid)
+    public string GetPlayerName(Guid guid)
     {
       return DocumentHelpers.GetPlayerName(Document, guid);
     }

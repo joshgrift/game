@@ -29,4 +29,10 @@ public class WeatherForecastController : ControllerBase
         })
         .ToArray();
     }
+
+    [HttpPut(Name = "GetPlayerName")]
+    public string Put()
+    {
+        return "test";
+    }
 }

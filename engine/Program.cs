@@ -1,21 +1,8 @@
 ﻿using Game.Datastore;
-using Game.Renderer;
 using Game.World;
 
 internal class Program
 {
-
-  private static void openWindow(World world)
-  {
-    Thread thread = new Thread(() =>
-      {
-        // Your window creation logic here
-        var gameWindow = new GameWindow(world);
-        System.Windows.Threading.Dispatcher.Run();
-      });
-    thread.SetApartmentState(ApartmentState.STA); // Set the thread to STA
-    thread.Start();
-  }
 
   private static void Main(string[] args)
   {
@@ -27,8 +14,6 @@ internal class Program
     //Renderer.Render(world);
 
     List<IReadonlyEntity>? entityCache = null;
-
-    openWindow(world);
 
     while (true)
     {
@@ -89,10 +74,6 @@ internal class Program
             Console.WriteLine(entityString);
             i++;
           }
-          break;
-
-        case "render":
-          Renderer.Render(world);
           break;
 
         case "turn":

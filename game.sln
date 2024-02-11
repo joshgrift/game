@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "engine", "engine\engine.csproj", "{D86F9C82-E047-41EB-B998-07B977DFAB18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gameApi", "api\gameApi.csproj", "{6B73B163-997A-45FC-B498-3409366BF4F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gameApi", "api\api.csproj", "{6B73B163-997A-45FC-B498-3409366BF4F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

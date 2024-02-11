@@ -17,6 +17,29 @@
       "env": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
+    },
+    {
+      "name": ".NET Engine",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "buildEngine",
+      "program": "${workspaceFolder}/engine/bin/Debug/net7.0-windows/engine.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/engine",
+      "stopAtEntry": false,
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Everything",
+      "configurations": [
+        ".NET Engine",
+        ".NET API"
+      ],
+      "stopAll": true
     }
   ]
 }
