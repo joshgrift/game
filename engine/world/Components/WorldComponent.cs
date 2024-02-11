@@ -2,15 +2,15 @@ using Game.Datastore;
 
 namespace Game.World
 {
-  public class WorldComponent : Component
+  internal class WorldComponent : Component
   {
 
-    public required Guid CurrentTurn;
+    internal required Guid CurrentTurn;
 
-    public required List<Guid> TurnOrder;
+    internal required List<Guid> TurnOrder;
 
-    public int TurnCount = 0;
+    internal int TurnCount = 0;
 
-    public string[][]? Terrain;
+    internal string[][]? Terrain;
   }
 }

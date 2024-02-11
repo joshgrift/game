@@ -1,8 +1,8 @@
 namespace Game.Util
 {
-  public class CommandUtil
+  internal class CommandUtil
   {
-    public static bool IsGuid(string s)
+    internal static bool IsGuid(string s)
     {
       return s.IndexOf("-") > -1;
     }

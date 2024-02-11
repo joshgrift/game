@@ -1,11 +1,11 @@
 namespace Game.Datastore
 {
-  public class Document
+  internal class Document
   {
     private readonly List<Entity> entities = new();
     private readonly Dictionary<Type, List<Entity>> components = new();
 
-    public Entity CreateEntity(Component[] newComponents, Guid? owner = null)
+    internal Entity CreateEntity(Component[] newComponents, Guid? owner = null)
     {
       var entity = new Entity(owner);
 
@@ -23,12 +23,12 @@ namespace Game.Datastore
       return entity;
     }
 
-    public List<Entity> GetEntities(Type type)
+    internal List<Entity> GetEntities(Type type)
     {
       return components[type] ?? new List<Entity>();
     }
 
-    public Entity? GetByGuid(Guid guid)
+    internal Entity? GetByGuid(Guid guid)
     {
       // SLOW AS HELL
       foreach (var entity in entities)

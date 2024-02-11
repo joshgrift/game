@@ -2,12 +2,12 @@ using Game.Datastore;
 
 namespace Game.World
 {
-  public class Sight : Component
+  internal class Sight : Component
   {
 
-    public int Radius;
+    internal int Radius;
 
-    public static Sight Default() => new()
+    internal static Sight Default() => new()
     {
       Radius = 2
     };

@@ -18,7 +18,7 @@ namespace Game.Datastore
 
   // Atomic Unit of the Document
 
-  public class Entity : IReadonlyEntity
+  internal class Entity : IReadonlyEntity
   {
     private readonly Dictionary<Type, Component> components = new();
 
@@ -37,7 +37,7 @@ namespace Game.Datastore
       Owner = owner;
     }
 
-    public Entity AddComponent(Component component)
+    internal Entity AddComponent(Component component)
     {
       components.Add(component.GetType(), component);
 

@@ -2,9 +2,9 @@ using Game.Datastore;
 
 namespace Game.World
 {
-  public static class DocumentHelpers
+  internal static class DocumentHelpers
   {
-    public static WorldComponent GetWorldComponent(Document document)
+    internal static WorldComponent GetWorldComponent(Document document)
     {
       List<Entity> worldEntities = document.GetEntities(typeof(WorldComponent));
 
@@ -14,7 +14,7 @@ namespace Game.World
       return worldEntities[0].GetComponent<WorldComponent>()!;
     }
 
-    public static string GetPlayerName(Document document, Guid player)
+    internal static string GetPlayerName(Document document, Guid player)
     {
       var playerEntity = document.GetByGuid(player);
 

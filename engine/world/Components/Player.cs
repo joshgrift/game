@@ -2,12 +2,12 @@ using Game.Datastore;
 
 namespace Game.World
 {
-  public class Player : Component
+  internal class Player : Component
   {
 
-    public required string Name;
+    internal required string Name;
 
-    public static Player Default() => new()
+    internal static Player Default() => new()
     {
       Name = "test"
     };

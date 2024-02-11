@@ -2,15 +2,15 @@ using Game.Datastore;
 
 namespace Game.World
 {
-  public class MovementSystem : System
+  internal class MovementSystem : System
   {
-    public MovementSystem(Document document, WorldDispatcher dispatcher) : base(document, dispatcher)
+    internal MovementSystem(Document document, WorldDispatcher dispatcher) : base(document, dispatcher)
     {
       Dispatcher.MoveEvent += MoveHandler;
       Dispatcher.TurnEvent += TurnHandler;
     }
 
-    public override void Close()
+    internal override void Close()
     {
       Dispatcher.MoveEvent -= MoveHandler;
       Dispatcher.TurnEvent -= TurnHandler;
@@ -63,7 +63,7 @@ namespace Game.World
       e.Result = new SystemResult(true, "Moved to new point");
     }
 
-    public void TurnHandler(object? sender, TurnEventArgs e)
+    internal void TurnHandler(object? sender, TurnEventArgs e)
     {
       var entities = Document.GetEntities(typeof(Movable));
 

@@ -2,19 +2,19 @@ using Game.Datastore;
 
 namespace Game.World
 {
-  public class TurnSystem : System
+  internal class TurnSystem : System
   {
-    public TurnSystem(Document document, WorldDispatcher dispatcher) : base(document, dispatcher)
+    internal TurnSystem(Document document, WorldDispatcher dispatcher) : base(document, dispatcher)
     {
       Dispatcher.TurnEvent += TurnHandler;
     }
 
-    public override void Close()
+    internal override void Close()
     {
       Dispatcher.TurnEvent -= TurnHandler;
     }
 
-    public void TurnHandler(object? sender, TurnEventArgs e)
+    internal void TurnHandler(object? sender, TurnEventArgs e)
     {
       var worldComponent = DocumentHelpers.GetWorldComponent(Document);
 

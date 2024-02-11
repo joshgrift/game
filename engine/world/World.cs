@@ -2,7 +2,7 @@ using Game.Datastore;
 
 namespace Game.World
 {
-  public class World
+  internal class World
   {
     private readonly Document Document = new();
 
@@ -12,7 +12,7 @@ namespace Game.World
     private WorldDispatcher Dispatcher = new();
 
     // create new
-    public World(string[] playerNames)
+    internal World(string[] playerNames)
     {
       if (playerNames.Length < 1)
         throw new ArgumentException("Missing players");
@@ -45,12 +45,12 @@ namespace Game.World
     }
 
     // load from file
-    public World(string json)
+    internal World(string json)
     {
       throw new NotImplementedException("");
     }
 
-    public IReadonlyEntity SpawnUnit(int q, int r)
+    internal IReadonlyEntity SpawnUnit(int q, int r)
     {
       var entity = Document.CreateEntity(new Component[] {
         new Position(){ Coords = new(q, r)},
@@ -62,13 +62,13 @@ namespace Game.World
     }
 
     // Move a unit
-    public void MoveUnit(Guid guid, int q, int r)
+    internal void MoveUnit(Guid guid, int q, int r)
     {
       var e = Dispatcher.Move(new MoveEventArgs(GetCurrentPlayerEntity().Guid, guid, q, r));
       Console.WriteLine($"{e.TextReason}");
     }
 
-    public Entity GetCurrentPlayerEntity()
+    internal Entity GetCurrentPlayerEntity()
     {
       var entities = Document.GetEntities(typeof(WorldComponent));
       var worldComponent = entities[0].GetComponent<WorldComponent>() ?? throw new Exception("Missing world component");
@@ -76,12 +76,12 @@ namespace Game.World
       return Document.GetByGuid(worldComponent.CurrentTurn) ?? throw new Exception("Missing player entity"); ;
     }
 
-    public string GetCurrentPlayerString()
+    internal string GetCurrentPlayerString()
     {
       return GetCurrentPlayerEntity().GetComponent<Player>()!.Name;
     }
 
-    public IReadonlyEntity AddPlayer(string name)
+    internal IReadonlyEntity AddPlayer(string name)
     {
       var entity = Document.CreateEntity(new Component[] {
         new Player(){ Name = name }
@@ -90,17 +90,17 @@ namespace Game.World
       return entity;
     }
 
-    public IEnumerable<IReadonlyEntity> GetAllMapEntities()
+    internal IEnumerable<IReadonlyEntity> GetAllMapEntities()
     {
       return Document.GetEntities(typeof(Position));
     }
 
-    public string GetPlayerName(Guid guid)
+    internal string GetPlayerName(Guid guid)
     {
       return DocumentHelpers.GetPlayerName(Document, guid);
     }
 
-    public void EndTurn()
+    internal void EndTurn()
     {
       var currentPlayer = GetCurrentPlayerEntity().Guid;
       var worldComponent = DocumentHelpers.GetWorldComponent(Document);

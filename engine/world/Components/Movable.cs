@@ -2,14 +2,14 @@ using Game.Datastore;
 
 namespace Game.World
 {
-  public class Movable : Component
+  internal class Movable : Component
   {
 
-    public int Movement;
+    internal int Movement;
 
-    public int MaxMovement;
+    internal int MaxMovement;
 
-    public static Movable Default() => new()
+    internal static Movable Default() => new()
     {
       MaxMovement = 2,
       Movement = 2

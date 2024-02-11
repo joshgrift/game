@@ -14,7 +14,7 @@ namespace Game.Renderer
 
     public Window MainWindow { get; private set; }
 
-    public World.World World { get; private set; }
+    internal World.World World { get; private set; }
 
     private Canvas Canvas { get; set; }
 
@@ -159,7 +159,7 @@ namespace Game.Renderer
       RenderMap();
     }
 
-    public GameWindow(World.World world)
+    internal GameWindow(World.World world)
     {
       // Create the application's main window
       MainWindow = new Window();

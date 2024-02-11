@@ -2,17 +2,17 @@ using Game.Datastore;
 
 namespace Game.World
 {
-  public class TurnEventArgs : GameEvent
+  internal class TurnEventArgs : GameEvent
   {
-    public TurnEventArgs(Guid instigator, Guid previousPlayer, Guid nextPlayer, bool newRound) : base(instigator)
+    internal TurnEventArgs(Guid instigator, Guid previousPlayer, Guid nextPlayer, bool newRound) : base(instigator)
     {
       PreviousPlayer = previousPlayer;
       NextPlayer = nextPlayer;
       NewRound = newRound;
     }
 
-    public Guid PreviousPlayer { get; set; }
-    public Guid NextPlayer { get; set; }
-    public bool NewRound { get; set; }
+    internal Guid PreviousPlayer { get; set; }
+    internal Guid NextPlayer { get; set; }
+    internal bool NewRound { get; set; }
   }
 }
