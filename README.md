@@ -14,3 +14,7 @@
   - See all entities you are allowed to see
 - move
   - Move an entity
+
+## WebAPI
+
+- https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-8.0&tabs=visual-studio-code
