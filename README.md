@@ -14,7 +14,10 @@
   - See all entities you are allowed to see
 - move
   - Move an entity
-
-## WebAPI
-
-- https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-8.0&tabs=visual-studio-code
+  - 
+## TodoList
+- Move C# Engine to Typescript or find an easy way to work with C#
+- Test Game Creation/Join/Leave tooling
+- Connect API & Engine
+  - Test some of this somehow
+- Make a front-end that can render hexagons and allows you
