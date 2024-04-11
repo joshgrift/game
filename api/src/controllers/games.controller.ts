@@ -9,7 +9,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { DatabaseService } from 'src/services/database.service';
-import { Game } from 'src/types';
+import { Game } from '../../../common/types';
 
 @Controller('games')
 export class GamesController {

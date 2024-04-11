@@ -3,7 +3,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { Game, Player } from 'src/types';
+import { Game, Player } from '../../../common/types';
 
 @Injectable()
 export class DatabaseService {
